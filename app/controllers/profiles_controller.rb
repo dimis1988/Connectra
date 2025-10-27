@@ -3,38 +3,38 @@ class ProfilesController < ApplicationController
         @profile = current_user.profile
         puts @profile.inspect
     end
-    
+
     def new
         @profile = Profile.new
     end
 
-    def create 
+    def create
         @profile = current_user.build_profile(profile_params)
-        if @profile.save 
+        if @profile.save
             redirect_to profile_path
-        else  
+        else
             render :new
         end
     end
 
-    def edit 
+    def edit
         @profile = current_user.profile
     end
 
-    def update 
+    def update
         @profile = current_user.profile
         if @profile.save(profile_params)
             redirect_to profile_path
         else
-            render :new 
+            render :new
         end
     end
 
-    def destroy 
+    def destroy
        @profile = current_user.profile
-       @profile.destroy 
+       @profile.destroy
        @current_user.destroy
-       redirect_to root_path 
+       redirect_to root_path
     end
 
     private
