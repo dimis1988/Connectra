@@ -1,0 +1,15 @@
+<%= form_with model: profile, url: profile_path, method: :update do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name, placeholder: "Dimitris Ioannou" %>
+  </div>
+
+  <div>
+    <%= form.label :username %><br>
+    <%= form.text_field :username, placeholder: "dimis1988" %>
+  </div>
+
+  <div>
+    <%= form.submit 'Create' %>
+  </div>
+<% end %>

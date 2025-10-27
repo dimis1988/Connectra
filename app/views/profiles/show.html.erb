@@ -1,0 +1,11 @@
+<%= @profile.name %>
+
+<%= @profile.username %>
+
+<%= @profile.user.email %>
+
+
+<%= link_to 'Edit Profile', edit_profile_path(@profile)  %>
+
+<%= button_to 'Delete Account', @profile, method: :delete,
+data: { turbo_confirm: "Are you sure?"}  %>
