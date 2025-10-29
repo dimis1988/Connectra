@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   devise_for :users
-  resource :profile, except: [ :index ]
+  resource :profile
   root "home#index"
 end
