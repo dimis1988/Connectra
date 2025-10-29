@@ -1,2 +1,24 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Home</h1>
+
+<p>Welcome</p>
+
+<% if user_signed_in? %>
+   <%= current_user.profile.username || current_user.email %>
+<% end %>
+<br>
+<p>Visit your profile here</p>>
+<%= link_to 'Profile', profile_path(@profile) %>
+
+
+
+<br>
+
+<h3>Last New Users</h3>
+
+<div>
+<% @users.each do |user| %>
+    <ul>
+        <li><%= user.email %></li>
+    </ul>
+<% end %>
+</div>
