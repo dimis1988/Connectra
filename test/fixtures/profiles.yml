@@ -6,6 +6,6 @@ one:
   user: one
 
 two:
-  name: MyString
-  username: MyString
+  name: MyString2
+  username: MyString2
   user: two
