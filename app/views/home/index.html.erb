@@ -2,11 +2,13 @@
 
 <p>Welcome</p>
 
-<%= current_user.profile.username || current_user.email %>
-    
+<% if user_signed_in? %>
+   <%= current_user.profile.username || current_user.email %>
+<% end %>
 <br>
-<p>Visit your profile here</p>
+<p>Visit your profile here</p>>
 <%= link_to 'Profile', profile_path(@profile) %>
+
 
 
 <br>
