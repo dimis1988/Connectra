@@ -1,0 +1,12 @@
+<h1>Posts </h1>
+
+<div>
+<% @posts.each do |post| %>
+<ul>
+
+    <%= post.content %> - 
+    <%= link_to post.user.profile.name, profile_path(post.user.profile) %> From
+    <%= post.created_at %>
+</ul>
+<% end %>
+</div>
