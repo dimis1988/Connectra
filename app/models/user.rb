@@ -5,9 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :profile, dependent: :destroy
+  has_many :posts, dependent: :destroy
   after_create :create_profile
 
-  scope :last_five_records, -> { order(created_at: :desc).limit(5) }
+  scope :last_five_users, -> { order(created_at: :desc).limit(5) }
 
   def create_profile
     self.build_profile.save(validate: false)

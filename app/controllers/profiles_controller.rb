@@ -1,7 +1,8 @@
 class ProfilesController < ApplicationController
     def show
-        @profile = current_user.profile
-        puts @profile.inspect
+        @posts = current_user.posts.order(created_at: :desc)
+        @post = Post.new
+        @profile = Profile.find(params[:id])
     end
 
     def new

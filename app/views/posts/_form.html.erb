@@ -1,0 +1,10 @@
+<%= form_with model: post do |form| %>
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_field :content, placeholder: "New post" %>
+  </div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <div>
+    <%= form.submit 'Create' %>
+  </div>
+<% end %>
