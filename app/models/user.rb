@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :comments, through: :posts
   after_create :create_profile
 
   scope :last_five_users, -> { order(created_at: :desc).limit(5) }
