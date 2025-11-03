@@ -11,20 +11,25 @@
 <%= button_to 'Delete Account', @profile, method: :delete,
 data: { turbo_confirm: "Are you sure?"}  %>
 
-
+<% if current_user == @profile.user %>
 <h3>Create Post</h3>
 
 <%= render 'posts/form', post: @post %>
+<% end %>
 
 <br>
-<h3>Your Posts</h3>
+<h3><%= @profile.name %> Posts</h3>
 
 <% @posts.each do |post|%>
 <ul>
     <li><%= post.content %>
     <%= button_to 'Delete Post', post, method: :delete,
-    data: {turbo_confirm: "Are you sure"} %>
+    data: {turbo_confirm: "Are you sure"} if current_user == @profile.user %>
     </li>
+
+    <% post.comments.each do |comment| %>
+        <%= comment.comment %> -- <%= comment.user.profile.username %>
+    <% end %>
 </ul>
 <% end %>
 

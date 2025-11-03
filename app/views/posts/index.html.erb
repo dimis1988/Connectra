@@ -1,12 +1,49 @@
-<h1>Posts </h1>
+<h1>Posts</h1>
 
-<div>
-<% @posts.each do |post| %>
-<ul>
+<div class="posts-container">
+  <% @posts.each do |post| %>
+    <div class="post-card">
+      <div class="post-header">
+        <p><strong><%= post.content %></strong></p>
+        <p>
+          by 
+          <%= link_to post.user.profile.name, profile_path(post.user.profile), class: "author-link" %> 
+          · <span class="post-date"><%= post.created_at.strftime("%B %d, %Y") %></span>
+        </p>
+      </div>
 
-    <%= post.content %> - 
-    <%= link_to post.user.profile.name, profile_path(post.user.profile) %> From
-    <%= post.created_at %>
-</ul>
-<% end %>
+      <% if post.comments.any? %>
+        <div class="comments-section">
+          <h4>Comments</h4>
+          <% post.comments.each do |comment| %>
+            <div class="comment-card">
+              <p>
+                <%= comment.comment %>
+              </p>
+              <p class="comment-meta">
+                — <%= comment.user.profile.name %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-comments">No comments yet.</p>
+      <% end %>
+    </div>
+
+    Create new comment!
+    <br> <br>
+    <%= form_for([post, post.comments.build]) do |f| %>
+    <div>
+        <%= f.label :comment %><br>
+        <%= f.text_field :comment, placeholder: "New comment" %>
+    </div>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+    <div>
+        <%= f.submit 'Create' %>
+    </div>
+
+    <% end %>
+
+  <% end %>
 </div>
