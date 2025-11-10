@@ -4,12 +4,17 @@
 <%= @profile.username %>
 
 <%= @profile.user.email %>
+
+Following: <%= @profile.user.followees.count %>
+Followers: <%= @profile.user.followers.count %>
 </div>
 
 <%= link_to 'Edit Profile', edit_profile_path(@profile)  %>
 <br><br>
+<!--
 <%= button_to 'Delete Account', @profile, method: :delete,
 data: { turbo_confirm: "Are you sure?"}  %>
+-->
 
 <% if current_user == @profile.user %>
 <h3>Create Post</h3>
