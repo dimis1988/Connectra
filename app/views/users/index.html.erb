@@ -1,0 +1,20 @@
+<h1>Users</h1>
+
+<% @users.each do |user| %>
+<ul>
+
+<% if user.id == current_user.id %>
+<% elsif current_user.followees.include?(user) %>
+    <%= button_to "Unfollow", unfollow_user_path(user), method: "POST" %>
+<% else %>
+    <%= button_to "Follow", follow_user_path(user), method: "POST"  %>
+<% end%>
+
+    <%= user.profile.name %> -
+    <%= user.email %>
+</ul>
+<% end %>
+
+<br>
+<%= link_to 'Back to Home', root_path %>
+<br>
