@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -15,11 +14,15 @@ Rails.application.routes.draw do
   post "/users/:id/follow", to: "users#follow", as: 'follow_user'
   post "/users/:id/unfollow", to: "users#unfollow", as: 'unfollow_user'
   
+
   devise_for :users
   resources :profiles
   resources :posts do 
     resources :comments
   end
+  post "/posts/:id/like", to: "posts#like", as: 'like_post'
+
   resources :follows
+  resources :likes
   root "home#index"
 end

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
   has_many :followers, through: :following_users
 
+  has_many :likes, through: :posts
+
   after_create :create_profile
 
   scope :last_five_users, -> { order(created_at: :desc).limit(5) }
