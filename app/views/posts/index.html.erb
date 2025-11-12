@@ -5,6 +5,7 @@
     <div class="post-card">
       <div class="post-header">
         <p><strong><%= post.content %></strong></p>
+        Likes: <%= post.likes.count %>
         <p>
           by 
           <%= link_to post.user.profile.name, profile_path(post.user.profile), class: "author-link" %> 
@@ -31,6 +32,13 @@
       <% end %>
     </div>
 
+<% if current_user.likes.exists?(post_id: post.id) %>
+    unlike
+<% else %>
+    <%= button_to 'Like', like_post_path(post), method: "POST" %>
+<% end%>
+
+
     Create new comment!
     <br> <br>
     <%= form_for([post, post.comments.build]) do |f| %>
@@ -47,3 +55,7 @@
 
   <% end %>
 </div>
+
+
+<br>
+<%= link_to 'Home', root_path %>

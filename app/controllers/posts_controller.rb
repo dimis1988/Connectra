@@ -1,6 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.where(user_id: [current_user.id] + current_user.followers.ids + current_user.followees.ids).order(created_at: :desc).includes(:user)
+  end
+
+  def like 
+    @post = Post.find(params[:id])
+    Like.create(user: current_user, post: @post)
+    redirect_to posts_path
   end
 
   def create
@@ -21,6 +27,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content, :user_id)
+    params.require(:post).permit(:content, :user_id, :like_id)
   end
 end
