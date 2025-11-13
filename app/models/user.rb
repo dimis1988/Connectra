@@ -16,10 +16,15 @@ class User < ApplicationRecord
   has_many :likes, through: :posts
 
   after_create :create_profile
+  after_create :send_welcome_email
 
   scope :last_five_users, -> { order(created_at: :desc).limit(5) }
 
   def create_profile
     self.build_profile.save(validate: false)
+  end
+
+  def send_welcome_email
+    UserMailer.with(user: self).welcome_email.deliver_later
   end
 end
