@@ -10,6 +10,8 @@
     <%= button_to "Follow", follow_user_path(user), method: "POST"  %>
 <% end%>
 
+    <%= image_tag user.profile.avatar if user.profile.avatar.attached?%>
+
     <%= user.profile.name %> -
     <%= user.email %>
 </ul>

@@ -10,6 +10,11 @@
   </div>
 
   <div>
+    <%= form.label :avatar %><br>
+    <%= form.file_field :avatar, placeholder: "Upload Profile Photo" %>
+  </div>
+
+  <div>
     <%= form.submit 'Create' %>
   </div>
 <% end %>
